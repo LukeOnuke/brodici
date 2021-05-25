@@ -1,0 +1,21 @@
+# depslib dependency file v1.0
+1621972928 source:c:\users\lukak\documents\github\brodici\backend.c
+	<stdlib.h>
+	<stdio.h>
+	"backend.h"
+
+1621973059 c:\users\lukak\documents\github\brodici\backend.h
+
+1621974150 source:c:\users\lukak\documents\github\brodici\frontend.c
+	<stdlib.h>
+	<stdio.h>
+	"frontend.h"
+
+1621972772 c:\users\lukak\documents\github\brodici\frontend.h
+
+1621973723 source:c:\users\lukak\documents\github\brodici\main.c
+	<stdio.h>
+	<stdlib.h>
+	"frontend.h"
+	"backend.h"
+
