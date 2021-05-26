@@ -36,6 +36,7 @@ void ispisiMeni(char imeFajla[]){
         karakter = fgetc(file);
         printf("%c", karakter);
     }
+    fclose(file); //zatvori fajl da nebi pravio greske u op sistemu
 }
 
 void pokreniEkran(){
