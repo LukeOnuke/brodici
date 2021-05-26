@@ -31,6 +31,14 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="backend.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="backend.h" />
+		<Unit filename="frontend.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="frontend.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
