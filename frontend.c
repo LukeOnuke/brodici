@@ -6,28 +6,61 @@
 #include "frontend.h"
 #include "backend.h"
 
+/**
+* Cisti ekran,
+*
+*/
 void cls(){
     system("cls");
 }
 
+/**
+* Boja ekrana radi po komandi color. Prvi heks broj je pozadina a drugi je boja teksta.
+* Uzeto iz 'color ?' komande
+* 0 = Black       8 = Gray
+* 1 = Blue        9 = Light Blue
+* 2 = Green       A = Light Green
+* 3 = Aqua        B = Light Aqua
+* 4 = Red         C = Light Red
+* 5 = Purple      D = Light Purple
+* 6 = Yellow      E = Light Yellow
+* 7 = White       F = Bright White
+*
+*/
 void color(char opcije[]){
     char komanda[20] = "color ";
     strcat(komanda, opcije);
     system(komanda);
 }
 
+/**
+* Stavlja boje ekrana na boje plavog igraca.
+*
+*/
 void plavi(){
     color("97");
 }
 
+/**
+* Stavlja boje ekrana na boje crvenog igraca.
+*
+*/
 void crveni(){
     color("47");
 }
 
+/**
+* Resetuje boju konzole.
+*
+*/
 void resetujBoju(){
     color("");
 }
 
+/**
+* Ispisuje meni iz fajla.
+*
+*/
 void ispisiMeni(char imeFajla[]){
     FILE *file = fopen(imeFajla, "r"); //Otvori faj u read modu
     char karakter;
@@ -39,6 +72,9 @@ void ispisiMeni(char imeFajla[]){
     fclose(file); //zatvori fajl da nebi pravio greske u op sistemu
 }
 
+/**
+* Ispisuje polje igraca, matricu pretvara u polje.
+*/
 void ispisiIgrackoPolje(bool igracevoPolje[][11]){
     printf("  "); //namesti index slova
 
@@ -61,6 +97,9 @@ void ispisiIgrackoPolje(bool igracevoPolje[][11]){
     }
 }
 
+/**
+* Pita za mesto na gadjanje, vraca koordinate tipa 0201 (REDKOLONA) (ij)
+*/
 int pitajZaGadjanje(){
     int odgovor = 0;
     int privremeno;
@@ -73,6 +112,9 @@ int pitajZaGadjanje(){
     return odgovor;
 }
 
+/**
+* Pita za mesto na pucanje, vraca koordinate tipa 0201 (REDKOLONA) (ij)
+*/
 int pitajZaLokaciju(){
     getchar();
     int odgovor = 0;
@@ -90,18 +132,29 @@ int pitajZaLokaciju(){
     return odgovor;
 }
 
+/**
+* Ispise polje za crvenog igraca.
+*/
 void ispisiIgrackoPoljeCrveni(bool igracevoPolje[][11]){
     crveni();
     ispisiMeni("gui/crveni.txt");
     ispisiIgrackoPolje(igracevoPolje);
 }
 
+/**
+* Ispise polje za plavog igraca.
+*/
 void ispisiIgrackoPoljePlavi(bool igracevoPolje[][11]){
     plavi();
     ispisiMeni("gui/plavi.txt");
     ispisiIgrackoPolje(igracevoPolje);
 }
 
+/**
+*
+* Proverava dal brod moze tu da stane.
+*
+*/
 bool proveriMesto(int velicina, int red, int kolona){
     if(red < 0 || red > REDOVI){
         return false;
@@ -112,12 +165,22 @@ bool proveriMesto(int velicina, int red, int kolona){
     return true;
 }
 
+/**
+*
+* Dodaj brodove.
+*
+*/
 void dodajBrod(bool igracevoPolje[][11], int red, int kolona,int velicina){
     for(int i = 0; i < velicina; i++){
         igracevoPolje[red][kolona + i] = true;
     }
 }
 
+/**
+*
+* Napuni matricu, unos koji je bitni tashi i marku.
+*
+*/
 void napuniMatricu(bool igracevoPolje[][11], bool plaviIgrac){
     int i;
     int lokacija;
@@ -188,6 +251,11 @@ void napuniMatricu(bool igracevoPolje[][11], bool plaviIgrac){
     }
 }
 
+/**
+*
+* Pokreni ekran, glavna funkcija.
+*
+*/
 void pokreniEkran(){
     char izabirniKarakter;
     ispisiMeni("gui/glavnimeni.txt");
