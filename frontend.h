@@ -15,8 +15,10 @@ void crveni(void);
 void plavi(void);
 void resetujBoju(void);
 void ispisiMeni(char imeFajla[]);
-int ispisiIgrackoPolje(bool igracevoPolje[][11]);
-int ispisiIgrackoPoljeCrveni(bool igracevoPolje[][11]);
-int ispisiIgrackoPoljePlavi(bool igracevoPolje[][11]);
+void ispisiIgrackoPolje(bool igracevoPolje[][11]);
+int pitajZaGadjanje(void);
+void ispisiIgrackoPoljeCrveni(bool igracevoPolje[][11]);
+void ispisiIgrackoPoljePlavi(bool igracevoPolje[][11]);
+void proveriMesto(int velicina, int red, int kolona);
 void napuniMatricu(bool igracevoPolje[][11]);
 #endif // BACKEND_H_INCLUDED

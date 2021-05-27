@@ -6,6 +6,7 @@
 
 bool poljePlavogIgraca[11][7];
 bool poljeCrvenogIgraca[11][7];
+void igra(void);
 
 #define REDOVI 10
 #define KOLONE 6

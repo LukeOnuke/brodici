@@ -28,13 +28,6 @@ void resetujBoju(){
     color("");
 }
 
-void pokreniIgru(){
-    printf("Ucitavam igranopolje... \n");
-    cls();
-    napuniMatricu(poljeCrvenogIgraca);
-    printf("%d", ispisiIgrackoPoljePlavi(poljeCrvenogIgraca));
-}
-
 void ispisiMeni(char imeFajla[]){
     FILE *file = fopen(imeFajla, "r"); //Otvori faj u read modu
     char karakter;
@@ -46,9 +39,7 @@ void ispisiMeni(char imeFajla[]){
     fclose(file); //zatvori fajl da nebi pravio greske u op sistemu
 }
 
-int ispisiIgrackoPolje(bool igracevoPolje[][11]){
-    int odgovor = 0;
-    int privremeno;
+void ispisiIgrackoPolje(bool igracevoPolje[][11]){
     printf("  "); //namesti index slova
 
     //ispisi slovni index
@@ -68,29 +59,40 @@ int ispisiIgrackoPolje(bool igracevoPolje[][11]){
         }
         printf("\n");
     }
-    printf("Unesi x gadjana : ");
+}
+
+int pitajZaGadjanje(){
+    int odgovor = 0;
+    int privremeno;
+    printf("Unesi y gadjana : ");
     scanf("%d", &privremeno);
     odgovor = privremeno * 100;
-    printf("Unesi y gadjana (kao veliko slovo): ");
+    printf("Unesi x gadjana (kao veliko slovo): ");
     scanf("%d", &privremeno - 'A');
     odgovor += privremeno;
     return odgovor;
 }
 
-int ispisiIgrackoPoljeCrveni(bool igracevoPolje[][11]){
+void ispisiIgrackoPoljeCrveni(bool igracevoPolje[][11]){
     crveni();
     ispisiMeni("gui/crveni.txt");
-    return ispisiIgrackoPolje(igracevoPolje);
+    ispisiIgrackoPolje(igracevoPolje);
 }
 
-int ispisiIgrackoPoljePlavi(bool igracevoPolje[][11]){
+void ispisiIgrackoPoljePlavi(bool igracevoPolje[][11]){
     plavi();
     ispisiMeni("gui/plavi.txt");
-    return ispisiIgrackoPolje(igracevoPolje);
+    ispisiIgrackoPolje(igracevoPolje);
+}
+
+void proveriMesto(int velicina, int red, int kolona){
+
 }
 
 void napuniMatricu(bool igracevoPolje[][11]){
-    for(int i = 0; i < REDOVI; i++){
+    int i;
+
+    for(i = 0; i < REDOVI; i++){
         for(int j = 0; j < KOLONE; j++){
             igracevoPolje[i][j] = true;
         }
@@ -106,7 +108,12 @@ void pokreniEkran(){
         scanf("%c", &izabirniKarakter);
         izabirniKarakter = tolower(izabirniKarakter);
         if(izabirniKarakter == 'i'){
-            pokreniIgru();
+            /*
+            *=========================
+            *Ovde se zove backend igre
+            *=========================
+            */
+            igra();
             resetujBoju();
             exit(0);
         }else if(izabirniKarakter == 'e'){
