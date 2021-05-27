@@ -7,7 +7,7 @@
 int main()
 {
     /*
-    -- tashoni --
+    -- tashoni i garconi --
     logika.h
     logika.c
 
