@@ -73,6 +73,23 @@ int pitajZaGadjanje(){
     return odgovor;
 }
 
+int pitajZaLokaciju(){
+    getchar();
+    int odgovor = 0;
+    int privremeno = 0;
+    printf("Unesi y broda : ");
+    scanf("%d", &odgovor);
+    odgovor *= 100;
+    printf("y=%d\n", odgovor);
+    printf("Unesi x broda (kao veliko slovo): ");
+    getchar();
+    scanf("%c", &privremeno);
+    privremeno -= 'A';
+    printf("x=%d\n", privremeno);
+    odgovor += (privremeno);
+    return odgovor;
+}
+
 void ispisiIgrackoPoljeCrveni(bool igracevoPolje[][11]){
     crveni();
     ispisiMeni("gui/crveni.txt");
@@ -85,17 +102,89 @@ void ispisiIgrackoPoljePlavi(bool igracevoPolje[][11]){
     ispisiIgrackoPolje(igracevoPolje);
 }
 
-void proveriMesto(int velicina, int red, int kolona){
-
+bool proveriMesto(int velicina, int red, int kolona){
+    if(red < 0 || red > REDOVI){
+        return false;
+    }
+    if(kolona < 0 || (kolona + velicina) > KOLONE){
+        return false;
+    }
+    return true;
 }
 
-void napuniMatricu(bool igracevoPolje[][11]){
-    int i;
+void dodajBrod(bool igracevoPolje[][11], int red, int kolona,int velicina){
+    for(int i = 0; i < velicina; i++){
+        igracevoPolje[red][kolona + i] = true;
+    }
+}
 
-    for(i = 0; i < REDOVI; i++){
-        for(int j = 0; j < KOLONE; j++){
-            igracevoPolje[i][j] = true;
+void napuniMatricu(bool igracevoPolje[][11], bool plaviIgrac){
+    int i;
+    int lokacija;
+
+    do{
+        cls();
+        if(plaviIgrac){
+            ispisiIgrackoPoljePlavi(igracevoPolje);
+        }else{
+            ispisiIgrackoPoljeCrveni(igracevoPolje);
         }
+        printf("Veliki brodovi (5) \n");
+        lokacija = pitajZaLokaciju();
+    }while(!proveriMesto(5, lokacija / 100, lokacija % 100));
+    dodajBrod(igracevoPolje, lokacija / 100, lokacija % 100, 5);
+
+    do{
+        cls();
+        if(plaviIgrac){
+            ispisiIgrackoPoljePlavi(igracevoPolje);
+        }else{
+            ispisiIgrackoPoljeCrveni(igracevoPolje);
+        }
+        printf("Veliki brodovi (4) \n");
+        lokacija = pitajZaLokaciju();
+    }while(!proveriMesto(5, lokacija / 100, lokacija % 100));
+    dodajBrod(igracevoPolje, lokacija / 100, lokacija % 100, 4);
+
+
+    do{
+        cls();
+        if(plaviIgrac){
+            ispisiIgrackoPoljePlavi(igracevoPolje);
+        }else{
+            ispisiIgrackoPoljeCrveni(igracevoPolje);
+        }
+        printf("Veliki brodovi (3) \n");
+        lokacija = pitajZaLokaciju();
+    }while(!proveriMesto(5, lokacija / 100, lokacija % 100));
+    dodajBrod(igracevoPolje, lokacija / 100, lokacija % 100, 3);
+
+    for(i = 0; i < 2; i++){
+        do{
+        cls();
+        if(plaviIgrac){
+            ispisiIgrackoPoljePlavi(igracevoPolje);
+        }else{
+            ispisiIgrackoPoljeCrveni(igracevoPolje);
+        }
+        printf("Veliki brodovi (2) [%d. brod]\n", i);
+        lokacija = pitajZaLokaciju();
+        }while(!proveriMesto(5, lokacija / 100, lokacija % 100));
+        dodajBrod(igracevoPolje, lokacija / 100, lokacija % 100, 2);
+    }
+
+    for(i = 0; i < 2; i++){
+        do{
+                cls();
+        if(plaviIgrac){
+            ispisiIgrackoPoljePlavi(igracevoPolje);
+        }else{
+            ispisiIgrackoPoljeCrveni(igracevoPolje);
+        }
+            printf("Veliki brodovi (1) [%d. brod] \n", i);
+            lokacija = pitajZaLokaciju();
+        }while(!proveriMesto(5, lokacija / 100, lokacija % 100));
+        dodajBrod(igracevoPolje, lokacija / 100, lokacija % 100, 1);
     }
 }
 
