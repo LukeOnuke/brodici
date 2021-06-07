@@ -13,5 +13,6 @@ void igra(){
     cls(); //Clearuje ekran
     napuniMatricu(poljePlavogIgraca, true); //Puni matricu plavog igraca sa brodovima
     ispisiIgrackoPoljePlavi(poljePlavogIgraca); //Ispisuje mu igrano polje*/
-    printf("%d", pitajZaLokaciju()); //Pita gde ce da gadja i ispisuje njegov izbor
+    ispisiIgrackoPoljePlavi(poljeCrvenogIgraca);
+    napuniMatricu(poljeCrvenogIgraca,true);//Pita gde ce da gadja i ispisuje njegov izbor
 }
