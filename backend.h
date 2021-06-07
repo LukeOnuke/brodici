@@ -8,7 +8,7 @@ bool poljePlavogIgraca[11][7];
 bool poljeCrvenogIgraca[11][7];
 void igra(void);
 
-#define REDOVI 10
+#define REDOVI 9
 #define KOLONE 6
 
 #endif // BACKEND_H_INCLUDED

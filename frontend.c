@@ -102,7 +102,6 @@ void ispisiIgrackoPolje(bool igracevoPolje[][11]){
 */
 int pitajZaLokaciju(){
     //'1' = 49
-    getchar();
     int odgovor = 0;
     int privremeno = 0;
     char milan[3];
@@ -110,7 +109,7 @@ int pitajZaLokaciju(){
 
     gets(milan);
 
-    odgovor = (milan[0] - 48) * 100;
+    odgovor = (milan[0] - 49) * 100;
     odgovor += toupper(milan[1]) - 65;
     return odgovor;
 }
@@ -142,7 +141,7 @@ bool proveriMesto(int velicina, int red, int kolona){
     if(red < 0 || red > REDOVI){
         return false;
     }
-    if(kolona < 0 || (kolona + velicina) > KOLONE){
+    if(kolona < 0 || kolona > KOLONE){
         return false;
     }
     return true;
