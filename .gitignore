@@ -1,5 +1,5 @@
-*.layout
-*.waw
-*.exe
-*.o
-brodici.layout
+*/*.layout
+*/*.waw
+*/*.exe
+*/*.o
+*/brodici.layout
