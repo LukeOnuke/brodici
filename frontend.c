@@ -168,7 +168,7 @@ void napuniMatricu(bool igracevoPolje[][11], bool plaviIgrac){
     int i;
     int lokacija;
 
-    for(i = 0; i < 5; i++){
+    for(i = 0; i < 10; i++){
         do{
             cls();
             if(plaviIgrac){
@@ -178,7 +178,7 @@ void napuniMatricu(bool igracevoPolje[][11], bool plaviIgrac){
             }
             printf("Brod [%d. brod] \n", i);
             lokacija = pitajZaLokaciju();
-        }while(!proveriMesto(5, lokacija / 100, lokacija % 100));
+        }while(!proveriMesto(1, lokacija / 100, lokacija % 100));
         dodajBrod(igracevoPolje, lokacija / 100, lokacija % 100, 1);
     }
 }

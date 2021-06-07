@@ -27,25 +27,31 @@
 	"frontend.h"
 	"backend.h"
 
-1622127343 source:d:\brodovki\brodici\backend.c
+1623093969 source:d:\brodovki\brodici\backend.c
 	<stdlib.h>
 	<stdio.h>
 	<stdbool.h>
 	"frontend.h"
 	"backend.h"
 
-1622127343 d:\brodovki\brodici\frontend.h
+1622128518 d:\brodovki\brodici\frontend.h
 	<stdbool.h>
 
 1622127343 d:\brodovki\brodici\backend.h
 	<stdbool.h>
 
-1622127343 source:d:\brodovki\brodici\frontend.c
+1623093855 source:d:\brodovki\brodici\frontend.c
 	<stdlib.h>
 	<stdio.h>
 	<ctype.h>
 	<string.h>
 	<stdbool.h>
+	"frontend.h"
+	"backend.h"
+
+1622127706 source:d:\brodovki\brodici\main.c
+	<stdio.h>
+	<stdlib.h>
 	"frontend.h"
 	"backend.h"
 
