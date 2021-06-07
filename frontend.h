@@ -16,7 +16,6 @@ void plavi(void);
 void resetujBoju(void);
 void ispisiMeni(char imeFajla[]);
 void ispisiIgrackoPolje(bool igracevoPolje[][11]);
-int pitajZaGadjanje(void);
 int pitajZaLokaciju(void);
 void ispisiIgrackoPoljeCrveni(bool igracevoPolje[][11]);
 void ispisiIgrackoPoljePlavi(bool igracevoPolje[][11]);
