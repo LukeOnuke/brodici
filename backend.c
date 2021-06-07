@@ -12,8 +12,8 @@ int crveniBrodovi;
 /*Ovo je "main" funkcija logike igre*/
 void igra()
 {
-    plaviBrodovi=4;
-    crveniBrodovi=4;
+    plaviBrodovi=10;
+    crveniBrodovi=10;
     printf("Ucitavam igranopolje... \n");
     cls(); //Clearuje ekran
     napuniMatricu(poljePlavogIgraca,true);
@@ -75,7 +75,7 @@ void gadjanjeCrveni()
 
 void crvenoPlavo()
 {
-    while(plaviBrodovi!=0 || crveniBrodovi!=0)
+    while(plaviBrodovi!=0 && crveniBrodovi!=0)
     {
         cls();
         gadjanjePlavi();
