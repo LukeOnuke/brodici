@@ -6,6 +6,8 @@
 
 bool poljePlavogIgraca[11][7];
 bool poljeCrvenogIgraca[11][7];
+int plaviBrodovi;
+int crveniBrodovi;
 void igra(void);
 
 #define REDOVI 9
