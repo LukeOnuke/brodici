@@ -1,4 +1,5 @@
 #include <stdbool.h>
+#include <windows.h>
 
 #ifndef BACKEND_H_INCLUDED
 #define BACKEND_H_INCLUDED
@@ -10,7 +11,7 @@ int plaviBrodovi;
 int crveniBrodovi;
 void igra(void);
 
-#define REDOVI 9
+#define REDOVI 6
 #define KOLONE 6
 
 #endif // BACKEND_H_INCLUDED

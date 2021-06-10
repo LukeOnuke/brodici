@@ -3,6 +3,7 @@
 #include <stdbool.h>
 #include "frontend.h"
 #include "backend.h"
+#include <windows.h>
 
 bool poljePlavogIgraca[11][7];
 bool poljeCrvenogIgraca[11][7];
@@ -32,6 +33,7 @@ void gadjanjePlavi()
     {
         odgovor=pitajZaLokaciju();
         imaSledeciPokret=false;
+        printf("%d %d %d",odgovor,odgovor/100,odgovor%100);
         if(poljeCrvenogIgraca[odgovor/100][odgovor%100])
         {
             printf("Pogodili ste!\n");
@@ -79,10 +81,26 @@ void crvenoPlavo()
     {
         cls();
         gadjanjePlavi();
+        sleep(4);
         cls();
         gadjanjeCrveni();
+        sleep(4);
         cls;
     }
+}
+
+int pitajZaLokaciju(){
+    //'1' = 49
+    int odgovor = 0;
+    int privremeno = 0;
+    char milan[3];
+    printf("Unesi koordinate broda (REDKOLONA) : ");
+
+    gets(milan);
+
+    odgovor = (milan[0] - 49) * 100;
+    odgovor += toupper(milan[1]) - 65;
+    return odgovor;
 }
 
 

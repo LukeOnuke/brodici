@@ -97,22 +97,6 @@ void ispisiIgrackoPolje(bool igracevoPolje[][11]){
     }
 }
 
-/**
-* Pita za mesto na pucanje, vraca koordinate tipa 0201 (REDKOLONA) (ij)
-*/
-int pitajZaLokaciju(){
-    //'1' = 49
-    int odgovor = 0;
-    int privremeno = 0;
-    char milan[3];
-    printf("Unesi koordinate broda (REDKOLONA) : ");
-
-    gets(milan);
-
-    odgovor = (milan[0] - 49) * 100;
-    odgovor += toupper(milan[1]) - 65;
-    return odgovor;
-}
 
 /**
 * Ispise polje za crvenog igraca.
