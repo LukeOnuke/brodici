@@ -7,14 +7,10 @@
 
 bool poljePlavogIgraca[11][7];
 bool poljeCrvenogIgraca[11][7];
-int plaviBrodovi;
-int crveniBrodovi;
 
 /*Ovo je "main" funkcija logike igre*/
 void igra()
 {
-    plaviBrodovi=10;
-    crveniBrodovi=10;
     printf("Ucitavam igranopolje... \n");
     cls(); //Clearuje ekran
     napuniMatricu(poljePlavogIgraca,true);
@@ -23,83 +19,69 @@ void igra()
     crvenoPlavo();
 }
 
-
-void gadjanjePlavi()
-{
-    int odgovor;
-    ispisiIgrackoPoljePlavi(poljePlavogIgraca);
-    bool imaSledeciPokret;
-    do
-    {
-        odgovor=pitajZaLokaciju();
-        imaSledeciPokret=false;
-        printf("%d %d %d",odgovor,odgovor/100,odgovor%100);
-        if(poljeCrvenogIgraca[odgovor/100][odgovor%100])
-        {
-            printf("Pogodili ste!\n");
-            poljeCrvenogIgraca[odgovor/100][odgovor%100]=false;
-            imaSledeciPokret=true;
-            crveniBrodovi--;
-        }
-        else
-        {
-            printf("Promasili ste!");
-
+int prebrojBrodove(bool poljeIgraca[][6]){
+    int brojac = 0;
+    for(int i = 0; i < REDOVI; i++){
+        for(int j = 0; j < KOLONE; j++){
+            if(poljeIgraca[i][j]){
+                brojac++;
+            }
         }
     }
-    while(imaSledeciPokret);
+    return brojac;
 }
 
-void gadjanjeCrveni()
-{
-    int odgovor;
-    ispisiIgrackoPoljeCrveni(poljePlavogIgraca);
-    bool imaSledeciPokret;
-    do
-    {
-        odgovor=pitajZaLokaciju();
-        imaSledeciPokret=false;
-        if(poljePlavogIgraca[odgovor/100][odgovor%100])
-        {
-            printf("Pogodili ste!\n");
-            poljePlavogIgraca[odgovor/100][odgovor%100]=false;
-            imaSledeciPokret=true;
-            plaviBrodovi--;
-        }
-        else
-        {
-            printf("Promasili ste!");
+//"Pewpew, ovo_je_funkcija_trolololo." -Tasha
+void pucaj(bool plaviIgac){
+    int odgovor = 0;
 
-        }
+    if(plaviIgac){
+        ispisiIgrackoPoljePlavi(poljePlavogIgraca);
+    }else{
+        ispisiIgrackoPoljeCrveni(poljeCrvenogIgraca);
     }
-    while(imaSledeciPokret);
+
+    printf("Pewpew brod...\n");
+    scanf("%c");
+    odgovor = pitajZaLokaciju();
+
+    if(plaviIgac && poljePlavogIgraca[odgovor / 100][odgovor % 100] || !plaviIgac && poljeCrvenogIgraca[odgovor / 100][odgovor % 100]){
+        printf("Pogodili ste");
+        if(plaviIgac){
+            poljeCrvenogIgraca[odgovor / 100][odgovor % 100] = false;
+        }else{
+            poljePlavogIgraca[odgovor / 100][odgovor % 100] = false;
+        }
+    }else{
+        printf("Promasili ste. -_-");
+    }
+
+
 }
 
 void crvenoPlavo()
 {
-    while(plaviBrodovi!=0 && crveniBrodovi!=0)
+    while(prebrojBrodove(poljePlavogIgraca) !=0 && prebrojBrodove(poljeCrvenogIgraca) !=0)
     {
         cls();
-        gadjanjePlavi();
+        pucaj(true);
         sleep(4);
         cls();
-        gadjanjeCrveni();
+        pucaj(false);
         sleep(4);
-        cls;
+        cls();
     }
 }
 
 int pitajZaLokaciju(){
     //'1' = 49
     int odgovor = 0;
-    int privremeno = 0;
     char milan[3];
     printf("Unesi koordinate broda (REDKOLONA) : ");
 
     gets(milan);
 
-    odgovor = (milan[0] - 49) * 100;
-    odgovor += toupper(milan[1]) - 65;
+    odgovor = (milan[0] - 49) * 100 + toupper(milan[1]) - 65; //broj 1 || '1' - 49 = 1
     return odgovor;
 }
 

@@ -75,7 +75,7 @@ void ispisiMeni(char imeFajla[]){
 /**
 * Ispisuje polje igraca, matricu pretvara u polje.
 */
-void ispisiIgrackoPolje(bool igracevoPolje[][11]){
+void ispisiIgrackoPolje(bool igracevoPolje[][6]){
     printf("  "); //namesti index slova
 
     //ispisi slovni index
@@ -101,7 +101,7 @@ void ispisiIgrackoPolje(bool igracevoPolje[][11]){
 /**
 * Ispise polje za crvenog igraca.
 */
-void ispisiIgrackoPoljeCrveni(bool igracevoPolje[][11]){
+void ispisiIgrackoPoljeCrveni(bool igracevoPolje[][6]){
     crveni();
     ispisiMeni("gui/crveni.txt");
     ispisiIgrackoPolje(igracevoPolje);
@@ -110,7 +110,7 @@ void ispisiIgrackoPoljeCrveni(bool igracevoPolje[][11]){
 /**
 * Ispise polje za plavog igraca.
 */
-void ispisiIgrackoPoljePlavi(bool igracevoPolje[][11]){
+void ispisiIgrackoPoljePlavi(bool igracevoPolje[][6]){
     plavi();
     ispisiMeni("gui/plavi.txt");
     ispisiIgrackoPolje(igracevoPolje);
@@ -136,9 +136,22 @@ bool proveriMesto(int velicina, int red, int kolona){
 * Dodaj brodove.
 *
 */
-void dodajBrod(bool igracevoPolje[][11], int red, int kolona,int velicina){
+void dodajBrod(bool igracevoPolje[][6], int red, int kolona,int velicina){
     for(int i = 0; i < velicina; i++){
         igracevoPolje[red][kolona + i] = true;
+    }
+}
+
+//autotasha
+void popuniNBrodova(int n, bool igracevoPolje[][6]){
+    int brojac = 0;
+    for(int i = 0; i < REDOVI; i++){
+        for(int j = 0; j < KOLONE; j++){
+            if(brojac < n){
+                brojac++;
+                igracevoPolje[i][j] = true;
+            }
+        }
     }
 }
 
@@ -147,22 +160,38 @@ void dodajBrod(bool igracevoPolje[][11], int red, int kolona,int velicina){
 * Napuni matricu, unos koji je bitni tashi i marku.
 *
 */
-void napuniMatricu(bool igracevoPolje[][11], bool plaviIgrac){
+void napuniMatricu(bool igracevoPolje[][6], bool plaviIgrac){
     int i;
     int lokacija;
 
-    for(i = 0; i < 10; i++){
-        do{
-            cls();
-            if(plaviIgrac){
-                ispisiIgrackoPoljePlavi(igracevoPolje);
-            }else{
-                ispisiIgrackoPoljeCrveni(igracevoPolje);
-            }
-            printf("Brod [%d. brod] \n", i);
-            lokacija = pitajZaLokaciju();
-        }while(!proveriMesto(1, lokacija / 100, lokacija % 100));
-        dodajBrod(igracevoPolje, lokacija / 100, lokacija % 100, 1);
+    if(true){
+        //autofill
+        if(plaviIgrac){
+            popuniNBrodova(9, igracevoPolje);
+            ispisiIgrackoPoljePlavi(igracevoPolje);
+            printf("Autofill ukljucen u program.properties");
+        }else{
+            popuniNBrodova(9, igracevoPolje);
+            ispisiIgrackoPoljeCrveni(igracevoPolje);
+            printf("Autofill ukljucen u program.properties");
+        }
+    }else{
+        for(i = 0; i < 10; i++){
+            do{
+                cls();
+
+                if(plaviIgrac){
+                    ispisiIgrackoPoljePlavi(igracevoPolje);
+                }else{
+                    ispisiIgrackoPoljeCrveni(igracevoPolje);
+                }
+
+                printf("Brod [%d. brod] \n", i);
+                lokacija = pitajZaLokaciju();
+
+            }while(!proveriMesto(1, lokacija / 100, lokacija % 100));
+            dodajBrod(igracevoPolje, lokacija / 100, lokacija % 100, 1);
+        }
     }
 }
 

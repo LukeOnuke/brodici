@@ -7,8 +7,10 @@
 
 bool poljePlavogIgraca[11][7];
 bool poljeCrvenogIgraca[11][7];
-int plaviBrodovi;
-int crveniBrodovi;
+int pitajZaLokaciju(void);
+int prebrojBrodove(bool poljeIgraca[][6]);
+void pucaj(bool plaviIgac);
+void crvenoPlavo(void);
 void igra(void);
 
 #define REDOVI 6
