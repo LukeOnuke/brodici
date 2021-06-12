@@ -8,7 +8,7 @@
 static bool poljePlavogIgraca[7][6];
 static bool poljeCrvenogIgraca[7][6];
 
-/*Ovo je "main" funkcija logike igre*/
+/*Ovo je 'main' funkcija logike igre*/
 void igra()
 {
     printf("Ucitavam igranopolje... \n");
