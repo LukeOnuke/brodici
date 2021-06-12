@@ -18,9 +18,12 @@ void ispisiMeni(char imeFajla[]);
 void ispisiIgrackoPolje(bool igracevoPolje[][6]);
 void ispisiIgrackoPoljeCrveni(bool igracevoPolje[][6]);
 void ispisiIgrackoPoljePlavi(bool igracevoPolje[][6]);
-bool proveriMesto(int velicina, int red, int kolona);
+bool proveriMesto(int velicina, int red, int kolona, bool igracevoPolje[][6]);
 void dodajBrod(bool igracevoPolje[][6], int red, int kolona,int velicina);
 void popuniNBrodova(int n, bool igracevoPolje[][6]);
 void napuniMatricu(bool igracevoPolje[][6], bool plaviIgrac);
 void debug(char poruka[]);
+void ispisiLiniju(void);
+void promasaj(void);
+void pogodak(void);
 #endif // BACKEND_H_INCLUDED

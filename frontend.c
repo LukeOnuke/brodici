@@ -59,7 +59,7 @@ void crveni()
 */
 void resetujBoju()
 {
-    color("");
+    system("color");
 }
 
 /**
@@ -137,7 +137,7 @@ void ispisiIgrackoPoljePlavi(bool igracevoPolje[][6])
 * Proverava dal brod moze tu da stane.
 *
 */
-bool proveriMesto(int velicina, int red, int kolona)
+bool proveriMesto(int velicina, int red, int kolona, bool igracevoPolje[][6])
 {
     if(red < 0 || red > REDOVI)
     {
@@ -145,6 +145,9 @@ bool proveriMesto(int velicina, int red, int kolona)
     }
     if(kolona < 0 || kolona > KOLONE)
     {
+        return false;
+    }
+    if(igracevoPolje[red][kolona]){
         return false;
     }
     return true;
@@ -191,7 +194,7 @@ void napuniMatricu(bool igracevoPolje[][6], bool plaviIgrac)
     int red;
     int kolona;
 
-    if(1)
+    if(0)
     {
         //autofill
         if(plaviIgrac)
@@ -228,7 +231,7 @@ void napuniMatricu(bool igracevoPolje[][6], bool plaviIgrac)
                 pitajZaLokaciju(&red, &kolona);
 
             }
-            while(!proveriMesto(1, red, kolona));
+            while(!proveriMesto(1, red, kolona, igracevoPolje));
             dodajBrod(igracevoPolje, red, kolona, 1);
         }
     }
@@ -237,6 +240,30 @@ void napuniMatricu(bool igracevoPolje[][6], bool plaviIgrac)
 void debug(char poruka[])
 {
     printf("[DEBUG] %s\n", poruka);
+}
+
+void ispisiLiniju(){
+    for(int i = 0; i < 80; i++){
+        printf("%c", 196);
+    }
+    printf("\n\n");
+}
+
+void promasaj(){
+    cls();
+    ispisiMeni("gui/promasaj.txt");
+    ispisiLiniju();
+    printf("Promasili ste, cekamo 2 sek za sledeceg igraca.\n");
+    ispisiLiniju();
+}
+
+void pogodak(){
+    resetujBoju();
+    cls();
+    ispisiMeni("gui/pogodak.txt");
+    ispisiLiniju();
+    printf("Pogodili ste, cekamo 2 sek.\n");
+    ispisiLiniju();
 }
 
 /**

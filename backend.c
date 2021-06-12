@@ -18,6 +18,7 @@ void igra()
     cls();
     getchar();
     crvenoPlavo();
+    pobednik();
 }
 
 int prebrojBrodove(bool poljeIgraca[][6])
@@ -58,6 +59,14 @@ void pucaj(bool plaviIgrac)
     bool sledecePucanje=false;
     do
     {
+        cls();
+        if(plaviIgrac){
+            ispisiIgrackoPoljePlavi(poljePlavogIgraca);
+        }else{
+            ispisiIgrackoPoljeCrveni(poljeCrvenogIgraca);
+        }
+        printf("\n");
+        ispisiLiniju();
         pitajZaLokaciju(&red, &kolona);
 
         if(plaviIgrac){
@@ -66,21 +75,38 @@ void pucaj(bool plaviIgrac)
 
             if(dalIma){
                 poljeCrvenogIgraca[red][kolona] = false;
-                printf("Pogodili ste\n");
+                pogodak();
+                sleep(2);
                 sledecePucanje=true;
+                if(prebrojBrodove(poljeCrvenogIgraca) == 0){
+                    cls();
+                    plavi();
+                    ispisiMeni("gui/pobedaplavih.txt");
+                    system("pause");
+                    exit(0);
+                }
             }else{
-                printf("Promasili ste\n");
+                promasaj();
             }
         }else{
             dalIma = poljePlavogIgraca[red][kolona];
             sledecePucanje = dalIma;
 
-            if(poljePlavogIgraca[red][kolona]){
+            if(dalIma){
+
                 poljePlavogIgraca[red][kolona] = false;
-                printf("Pogodili ste\n");
-                sledecePucanje = true;
+                pogodak();
+                sleep(2);
+                sledecePucanje=true;
+                if(prebrojBrodove(poljePlavogIgraca) == 0){
+                    cls();
+                    crveni();
+                    ispisiMeni("gui/pobedacrvenih.txt");
+                    system("pause");
+                    exit(0);
+                }
             }else{
-                printf("Promasili ste\n");
+                promasaj();
             }
         }
     }
@@ -104,18 +130,16 @@ void crvenoPlavo()
 
 void pobednik()
 {
-
     if(prebrojBrodove(poljePlavogIgraca)==0)
     {
-        ispisiIgrackoPoljeCrveni(poljeCrvenogIgraca);
-        printf("POBEDNIK JE CRVENI IGRAC!");
+        crveni();
+        ispisiMeni("gui/pobedacrvenih.txt");
     }
     else
     {
-        ispisiIgrackoPoljePlavi(poljePlavogIgraca);
-        printf("POBEDNIK JE PLAVI IGRAC!");
+        plavi();
+        ispisiMeni("gui/pobedaplavih.txt");
     }
-
 }
 
 void pitajZaLokaciju(int * red, int * kolona)
@@ -126,7 +150,6 @@ void pitajZaLokaciju(int * red, int * kolona)
 
     gets(milan);
 
-    printf("Unos [0]:%d, [1]:%d\n", milan[0], milan[1]);
     *red = (milan[0] - 49);
     *kolona = toupper(milan[1]) - 65;
     return;
