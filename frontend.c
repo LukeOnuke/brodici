@@ -7,7 +7,7 @@
 #include "backend.h"
 
 /**
-* Cisti ekran,
+* cisti ekran,
 *
 */
 void cls()
