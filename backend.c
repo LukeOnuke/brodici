@@ -20,11 +20,15 @@ void igra()
     crvenoPlavo();
 }
 
-int prebrojBrodove(bool poljeIgraca[][6]){
+int prebrojBrodove(bool poljeIgraca[][6])
+{
     int brojac = 0;
-    for(int i = 0; i < REDOVI; i++){
-        for(int j = 0; j < KOLONE; j++){
-            if(poljeIgraca[i][j]){
+    for(int i = 0; i < REDOVI; i++)
+    {
+        for(int j = 0; j < KOLONE; j++)
+        {
+            if(poljeIgraca[i][j])
+            {
                 brojac++;
             }
         }
@@ -32,44 +36,55 @@ int prebrojBrodove(bool poljeIgraca[][6]){
     return brojac;
 }
 
-void pucaj(bool plaviIgac){
+void ispisiFalse(bool poljeIgraca[][6]){
+    for(int i = 0; i < REDOVI; i++)
+    {
+        for(int j = 0; j < KOLONE; j++)
+        {
+            if(!poljeIgraca[i][j])
+            {
+                printf("%d(%d, %d)", poljeIgraca[i][j], i , j);
+            }
+        }
+    }
+}
+
+void pucaj(bool plaviIgrac)
+{
     int red = 0;
     int kolona = 0;
+    bool dalIma = false;
 
-    if(plaviIgac){
-        ispisiIgrackoPoljePlavi(poljePlavogIgraca);
-    }else{
-        ispisiIgrackoPoljeCrveni(poljeCrvenogIgraca);
-    }
-
-    bool sledecePucanje=true;
+    bool sledecePucanje=false;
     do
     {
-    pitajZaLokaciju(&red, &kolona);
-    if((plaviIgac && poljePlavogIgraca[red][kolona]) || (!plaviIgac && poljeCrvenogIgraca[red][kolona]))
-        {
-            printf("Pogodili ste\n");
-            if(plaviIgac)
-                {
-                    poljeCrvenogIgraca[red][kolona] = false;
-                }
-            else
-                {
-                    poljePlavogIgraca[red][kolona] = false;
-                }
+        pitajZaLokaciju(&red, &kolona);
+
+        if(plaviIgrac){
+            dalIma = poljeCrvenogIgraca[red][kolona];
+            sledecePucanje = dalIma;
+
+            if(dalIma){
+                poljeCrvenogIgraca[red][kolona] = false;
+                printf("Pogodili ste\n");
+                sledecePucanje=true;
+            }else{
+                printf("Promasili ste\n");
+            }
+        }else{
+            dalIma = poljePlavogIgraca[red][kolona];
+            sledecePucanje = dalIma;
+
+            if(poljePlavogIgraca[red][kolona]){
+                poljePlavogIgraca[red][kolona] = false;
+                printf("Pogodili ste\n");
+                sledecePucanje = true;
+            }else{
+                printf("Promasili ste\n");
+            }
         }
-    else
-    {
-        printf("Promasili ste");
-        sledecePucanje=false;
-
-    }
-
     }
     while(sledecePucanje);
-
-
-
 
 }
 
@@ -103,7 +118,8 @@ void pobednik()
 
 }
 
-void pitajZaLokaciju(int * red, int * kolona){
+void pitajZaLokaciju(int * red, int * kolona)
+{
     //'1' = 49
     char milan[3];
     printf("Unesi koordinate broda (REDKOLONA) : ");

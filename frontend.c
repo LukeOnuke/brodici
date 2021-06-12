@@ -10,7 +10,8 @@
 * Cisti ekran,
 *
 */
-void cls(){
+void cls()
+{
     system("cls");
 }
 
@@ -27,7 +28,8 @@ void cls(){
 * 7 = White       F = Bright White
 *
 */
-void color(char opcije[]){
+void color(char opcije[])
+{
     char komanda[20] = "color ";
     strcat(komanda, opcije);
     system(komanda);
@@ -37,7 +39,8 @@ void color(char opcije[]){
 * Stavlja boje ekrana na boje plavog igraca.
 *
 */
-void plavi(){
+void plavi()
+{
     color("97");
 }
 
@@ -45,7 +48,8 @@ void plavi(){
 * Stavlja boje ekrana na boje crvenog igraca.
 *
 */
-void crveni(){
+void crveni()
+{
     color("47");
 }
 
@@ -53,7 +57,8 @@ void crveni(){
 * Resetuje boju konzole.
 *
 */
-void resetujBoju(){
+void resetujBoju()
+{
     color("");
 }
 
@@ -61,10 +66,12 @@ void resetujBoju(){
 * Ispisuje meni iz fajla.
 *
 */
-void ispisiMeni(char imeFajla[]){
+void ispisiMeni(char imeFajla[])
+{
     FILE *file = fopen(imeFajla, "r"); //Otvori faj u read modu
     char karakter;
-    while(karakter != EOF){
+    while(karakter != EOF)
+    {
         karakter = fgetc(file);
         printf("%c", karakter);
     }
@@ -75,21 +82,28 @@ void ispisiMeni(char imeFajla[]){
 /**
 * Ispisuje polje igraca, matricu pretvara u polje.
 */
-void ispisiIgrackoPolje(bool igracevoPolje[][6]){
+void ispisiIgrackoPolje(bool igracevoPolje[][6])
+{
     printf("  "); //namesti index slova
 
     //ispisi slovni index
-    for(int i = 'A'; i < (REDOVI + 'A'); i++){
+    for(int i = 'A'; i < (REDOVI + 'A'); i++)
+    {
         printf(" %c", i);
     }
     printf("\n");
     //ispisi matricu
-    for(int i = 0; i < REDOVI; i++){
+    for(int i = 0; i < REDOVI; i++)
+    {
         printf("%2d", i + 1);
-        for(int j = 0; j < KOLONE; j++){
-            if(igracevoPolje[i][j]){
+        for(int j = 0; j < KOLONE; j++)
+        {
+            if(igracevoPolje[i][j])
+            {
                 printf(" x");
-            }else{
+            }
+            else
+            {
                 printf("  ");
             }
         }
@@ -101,7 +115,8 @@ void ispisiIgrackoPolje(bool igracevoPolje[][6]){
 /**
 * Ispise polje za crvenog igraca.
 */
-void ispisiIgrackoPoljeCrveni(bool igracevoPolje[][6]){
+void ispisiIgrackoPoljeCrveni(bool igracevoPolje[][6])
+{
     crveni();
     ispisiMeni("gui/crveni.txt");
     ispisiIgrackoPolje(igracevoPolje);
@@ -110,7 +125,8 @@ void ispisiIgrackoPoljeCrveni(bool igracevoPolje[][6]){
 /**
 * Ispise polje za plavog igraca.
 */
-void ispisiIgrackoPoljePlavi(bool igracevoPolje[][6]){
+void ispisiIgrackoPoljePlavi(bool igracevoPolje[][6])
+{
     plavi();
     ispisiMeni("gui/plavi.txt");
     ispisiIgrackoPolje(igracevoPolje);
@@ -121,11 +137,14 @@ void ispisiIgrackoPoljePlavi(bool igracevoPolje[][6]){
 * Proverava dal brod moze tu da stane.
 *
 */
-bool proveriMesto(int velicina, int red, int kolona){
-    if(red < 0 || red > REDOVI){
+bool proveriMesto(int velicina, int red, int kolona)
+{
+    if(red < 0 || red > REDOVI)
+    {
         return false;
     }
-    if(kolona < 0 || kolona > KOLONE){
+    if(kolona < 0 || kolona > KOLONE)
+    {
         return false;
     }
     return true;
@@ -136,18 +155,24 @@ bool proveriMesto(int velicina, int red, int kolona){
 * Dodaj brodove.
 *
 */
-void dodajBrod(bool igracevoPolje[][6], int red, int kolona,int velicina){
-    for(int i = 0; i < velicina; i++){
+void dodajBrod(bool igracevoPolje[][6], int red, int kolona,int velicina)
+{
+    for(int i = 0; i < velicina; i++)
+    {
         igracevoPolje[red][kolona + i] = true;
     }
 }
 
 //autotasha
-void popuniNBrodova(int n, bool igracevoPolje[][6]){
+void popuniNBrodova(int n, bool igracevoPolje[][6])
+{
     int brojac = 0;
-    for(int i = 0; i < REDOVI; i++){
-        for(int j = 0; j < KOLONE; j++){
-            if(brojac < n){
+    for(int i = 0; i < REDOVI; i++)
+    {
+        for(int j = 0; j < KOLONE; j++)
+        {
+            if(brojac < n)
+            {
                 brojac++;
                 igracevoPolje[i][j] = true;
             }
@@ -160,43 +185,57 @@ void popuniNBrodova(int n, bool igracevoPolje[][6]){
 * Napuni matricu, unos koji je bitni tashi i marku.
 *
 */
-void napuniMatricu(bool igracevoPolje[][6], bool plaviIgrac){
+void napuniMatricu(bool igracevoPolje[][6], bool plaviIgrac)
+{
     int i;
     int red;
     int kolona;
 
-    if(0){
+    if(1)
+    {
         //autofill
-        if(plaviIgrac){
+        if(plaviIgrac)
+        {
             popuniNBrodova(25, igracevoPolje);
             ispisiIgrackoPoljePlavi(igracevoPolje);
             printf("Autofill ukljucen u program.properties");
-        }else{
+        }
+        else
+        {
             popuniNBrodova(25, igracevoPolje);
             ispisiIgrackoPoljeCrveni(igracevoPolje);
             printf("Autofill ukljucen u program.properties");
         }
-    }else{
-        for(i = 0; i < 10; i++){
-            do{
+    }
+    else
+    {
+        for(i = 0; i < 10; i++)
+        {
+            do
+            {
                 cls();
 
-                if(plaviIgrac){
+                if(plaviIgrac)
+                {
                     ispisiIgrackoPoljePlavi(igracevoPolje);
-                }else{
+                }
+                else
+                {
                     ispisiIgrackoPoljeCrveni(igracevoPolje);
                 }
 
                 printf("Brod [%d. brod] \n", i);
                 pitajZaLokaciju(&red, &kolona);
 
-            }while(!proveriMesto(1, red, kolona));
+            }
+            while(!proveriMesto(1, red, kolona));
             dodajBrod(igracevoPolje, red, kolona, 1);
         }
     }
 }
 
-void debug(char poruka[]){
+void debug(char poruka[])
+{
     printf("[DEBUG] %s\n", poruka);
 }
 
@@ -205,15 +244,18 @@ void debug(char poruka[]){
 * Pokreni ekran, glavna funkcija.
 *
 */
-void pokreniEkran(){
+void pokreniEkran()
+{
     char izabirniKarakter;
     ispisiMeni("gui/glavnimeni.txt");
     printf("\n");
     printf("[(I)graj] [(E)scape] \n");
-    do{
+    do
+    {
         scanf("%c", &izabirniKarakter);
         izabirniKarakter = tolower(izabirniKarakter);
-        if(izabirniKarakter == 'i'){
+        if(izabirniKarakter == 'i')
+        {
             /*
             *=========================
             *Ovde se zove backend igre
@@ -222,12 +264,17 @@ void pokreniEkran(){
             igra();
             resetujBoju();
             exit(0);
-        }else if(izabirniKarakter == 'e'){
+        }
+        else if(izabirniKarakter == 'e')
+        {
             printf("Escape");
             exit(0);
-        }else{
+        }
+        else
+        {
             printf("Pogresan unos, probajte ponovo. ");
         }
-    }while(izabirniKarakter != 'i' || izabirniKarakter != 'j');
+    }
+    while(izabirniKarakter != 'i' || izabirniKarakter != 'j');
 }
 /*Front end (sprednja-logika) ide ovde*/
