@@ -79,12 +79,28 @@ void crvenoPlavo()
     {
         cls();
         pucaj(true);
-        sleep(4);
+        sleep(3);
         cls();
         pucaj(false);
-        sleep(4);
+        sleep(3);
         cls();
     }
+}
+
+void pobednik()
+{
+
+    if(prebrojBrodove(poljePlavogIgraca)==0)
+    {
+        ispisiIgrackoPoljeCrveni(poljeCrvenogIgraca);
+        printf("POBEDNIK JE CRVENI IGRAC!");
+    }
+    else
+    {
+        ispisiIgrackoPoljePlavi(poljePlavogIgraca);
+        printf("POBEDNIK JE PLAVI IGRAC!");
+    }
+
 }
 
 void pitajZaLokaciju(int * red, int * kolona){
