@@ -5,8 +5,8 @@
 #include "backend.h"
 #include <windows.h>
 
-bool poljePlavogIgraca[11][7];
-bool poljeCrvenogIgraca[11][7];
+static bool poljePlavogIgraca[7][6];
+static bool poljeCrvenogIgraca[7][6];
 
 /*Ovo je "main" funkcija logike igre*/
 void igra()
@@ -16,6 +16,7 @@ void igra()
     napuniMatricu(poljePlavogIgraca,true);
     napuniMatricu(poljeCrvenogIgraca,false);
     cls();
+    getchar();
     crvenoPlavo();
 }
 
@@ -33,7 +34,8 @@ int prebrojBrodove(bool poljeIgraca[][6]){
 
 //"Pewpew, ovo_je_funkcija_trolololo." -Tasha
 void pucaj(bool plaviIgac){
-    int odgovor = 0;
+    int red = 0;
+    int kolona = 0;
 
     if(plaviIgac){
         ispisiIgrackoPoljePlavi(poljePlavogIgraca);
@@ -42,15 +44,16 @@ void pucaj(bool plaviIgac){
     }
 
     printf("Pewpew brod...\n");
-    scanf("%c");
-    odgovor = pitajZaLokaciju();
 
-    if(plaviIgac && poljePlavogIgraca[odgovor / 100][odgovor % 100] || !plaviIgac && poljeCrvenogIgraca[odgovor / 100][odgovor % 100]){
+    pitajZaLokaciju(&red, &kolona);
+    printf("red : %d, kolona %d\n", red, kolona);
+
+    if((plaviIgac && poljePlavogIgraca[red][kolona]) || (!plaviIgac && poljeCrvenogIgraca[red][kolona])){
         printf("Pogodili ste");
         if(plaviIgac){
-            poljeCrvenogIgraca[odgovor / 100][odgovor % 100] = false;
+            poljeCrvenogIgraca[red][kolona] = false;
         }else{
-            poljePlavogIgraca[odgovor / 100][odgovor % 100] = false;
+            poljePlavogIgraca[red][kolona] = false;
         }
     }else{
         printf("Promasili ste. -_-");
@@ -73,16 +76,17 @@ void crvenoPlavo()
     }
 }
 
-int pitajZaLokaciju(){
+void pitajZaLokaciju(int * red, int * kolona){
     //'1' = 49
-    int odgovor = 0;
     char milan[3];
     printf("Unesi koordinate broda (REDKOLONA) : ");
 
     gets(milan);
 
-    odgovor = (milan[0] - 49) * 100 + toupper(milan[1]) - 65; //broj 1 || '1' - 49 = 1
-    return odgovor;
+    printf("Unos [0]:%d, [1]:%d\n", milan[0], milan[1]);
+    *red = (milan[0] - 49);
+    *kolona = toupper(milan[1]) - 65;
+    return;
 }
 
 

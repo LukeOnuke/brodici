@@ -5,9 +5,7 @@
 #define BACKEND_H_INCLUDED
 //Ovde ubacujes funkcije za backend.c
 
-bool poljePlavogIgraca[11][7];
-bool poljeCrvenogIgraca[11][7];
-int pitajZaLokaciju(void);
+void pitajZaLokaciju(int * red, int * kolona);
 int prebrojBrodove(bool poljeIgraca[][6]);
 void pucaj(bool plaviIgac);
 void crvenoPlavo(void);

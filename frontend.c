@@ -79,7 +79,7 @@ void ispisiIgrackoPolje(bool igracevoPolje[][6]){
     printf("  "); //namesti index slova
 
     //ispisi slovni index
-    for(int i = 'A'; i < 'G'; i++){
+    for(int i = 'A'; i < (REDOVI + 'A'); i++){
         printf(" %c", i);
     }
     printf("\n");
@@ -162,16 +162,17 @@ void popuniNBrodova(int n, bool igracevoPolje[][6]){
 */
 void napuniMatricu(bool igracevoPolje[][6], bool plaviIgrac){
     int i;
-    int lokacija;
+    int red;
+    int kolona;
 
-    if(true){
+    if(0){
         //autofill
         if(plaviIgrac){
-            popuniNBrodova(9, igracevoPolje);
+            popuniNBrodova(25, igracevoPolje);
             ispisiIgrackoPoljePlavi(igracevoPolje);
             printf("Autofill ukljucen u program.properties");
         }else{
-            popuniNBrodova(9, igracevoPolje);
+            popuniNBrodova(25, igracevoPolje);
             ispisiIgrackoPoljeCrveni(igracevoPolje);
             printf("Autofill ukljucen u program.properties");
         }
@@ -187,12 +188,16 @@ void napuniMatricu(bool igracevoPolje[][6], bool plaviIgrac){
                 }
 
                 printf("Brod [%d. brod] \n", i);
-                lokacija = pitajZaLokaciju();
+                pitajZaLokaciju(&red, &kolona);
 
-            }while(!proveriMesto(1, lokacija / 100, lokacija % 100));
-            dodajBrod(igracevoPolje, lokacija / 100, lokacija % 100, 1);
+            }while(!proveriMesto(1, red, kolona));
+            dodajBrod(igracevoPolje, red, kolona, 1);
         }
     }
+}
+
+void debug(char poruka[]){
+    printf("[DEBUG] %s\n", poruka);
 }
 
 /**
@@ -225,5 +230,4 @@ void pokreniEkran(){
         }
     }while(izabirniKarakter != 'i' || izabirniKarakter != 'j');
 }
-
 /*Front end (sprednja-logika) ide ovde*/
