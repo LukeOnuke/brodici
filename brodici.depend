@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1623491304 source:c:\users\lukak\documents\github\brodici\backend.c
+1623498234 source:c:\users\lukak\documents\github\brodici\backend.c
 	<stdlib.h>
 	<stdio.h>
 	<stdbool.h>
@@ -11,7 +11,7 @@
 	<stdbool.h>
 	<windows.h>
 
-1623491557 source:c:\users\lukak\documents\github\brodici\frontend.c
+1623498184 source:c:\users\lukak\documents\github\brodici\frontend.c
 	<stdlib.h>
 	<stdio.h>
 	<ctype.h>
