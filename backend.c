@@ -32,7 +32,6 @@ int prebrojBrodove(bool poljeIgraca[][6]){
     return brojac;
 }
 
-//"Pewpew, ovo_je_funkcija_trolololo." -Tasha
 void pucaj(bool plaviIgac){
     int red = 0;
     int kolona = 0;
@@ -43,21 +42,33 @@ void pucaj(bool plaviIgac){
         ispisiIgrackoPoljeCrveni(poljeCrvenogIgraca);
     }
 
-    printf("Pewpew brod...\n");
-
+    bool sledecePucanje=true;
+    do
+    {
     pitajZaLokaciju(&red, &kolona);
-    printf("red : %d, kolona %d\n", red, kolona);
-
-    if((plaviIgac && poljePlavogIgraca[red][kolona]) || (!plaviIgac && poljeCrvenogIgraca[red][kolona])){
-        printf("Pogodili ste");
-        if(plaviIgac){
-            poljeCrvenogIgraca[red][kolona] = false;
-        }else{
-            poljePlavogIgraca[red][kolona] = false;
+    if((plaviIgac && poljePlavogIgraca[red][kolona]) || (!plaviIgac && poljeCrvenogIgraca[red][kolona]))
+        {
+            printf("Pogodili ste\n");
+            if(plaviIgac)
+                {
+                    poljeCrvenogIgraca[red][kolona] = false;
+                }
+            else
+                {
+                    poljePlavogIgraca[red][kolona] = false;
+                }
         }
-    }else{
-        printf("Promasili ste. -_-");
+    else
+    {
+        printf("Promasili ste");
+        sledecePucanje=false;
+
     }
+
+    }
+    while(sledecePucanje);
+
+
 
 
 }
