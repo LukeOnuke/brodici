@@ -2,7 +2,7 @@
 
 #ifndef FRONTEND_H_INCLUDED
 #define FRONTEND_H_INCLUDED
-//Ovde ubacujes funkcije za frontend.c
+//Ovde se ubacuju funkcije za frontend.c
 
 #define PLAVI_BOJE 97
 #define CRVENI_BOJE 47
