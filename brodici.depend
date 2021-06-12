@@ -30,7 +30,7 @@
 	"frontend.h"
 	"backend.h"
 
-1623511060 source:d:\brodovki\brodici\backend.c
+1623514455 source:d:\brodovki\brodici\backend.c
 	<stdlib.h>
 	<stdio.h>
 	<stdbool.h>
@@ -45,7 +45,7 @@
 	<stdbool.h>
 	<windows.h>
 
-1623512282 source:d:\brodovki\brodici\frontend.c
+1623514966 source:d:\brodovki\brodici\frontend.c
 	<stdlib.h>
 	<stdio.h>
 	<ctype.h>
@@ -54,7 +54,7 @@
 	"frontend.h"
 	"backend.h"
 
-1623510495 source:d:\brodovki\brodici\main.c
+1623515247 source:d:\brodovki\brodici\main.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>

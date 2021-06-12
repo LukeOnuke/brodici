@@ -16,12 +16,15 @@ void igra()
     napuniMatricu(poljePlavogIgraca,true);
     napuniMatricu(poljeCrvenogIgraca,false);
     cls();
+    printf("\n");
+    ispisiLiniju();
     printf("Pritisnite enter za gadjanje");
+    printf("\n");
+    ispisiLiniju();
     getchar();
     crvenoPlavo();
-    pobednik();
 }
-
+/*Prebrojava koliko je igrac uneo brodova*/
 int prebrojBrodove(bool poljeIgraca[][6])
 {
     int brojac = 0;
@@ -38,19 +41,7 @@ int prebrojBrodove(bool poljeIgraca[][6])
     return brojac;
 }
 
-void ispisiFalse(bool poljeIgraca[][6]){
-    for(int i = 0; i < REDOVI; i++)
-    {
-        for(int j = 0; j < KOLONE; j++)
-        {
-            if(!poljeIgraca[i][j])
-            {
-                printf("%d(%d, %d)", poljeIgraca[i][j], i , j);
-            }
-        }
-    }
-}
-
+/* gadjanje protivnikovih brodova*/
 void pucaj(bool plaviIgrac)
 {
     int red = 0;
@@ -114,7 +105,7 @@ void pucaj(bool plaviIgrac)
     while(sledecePucanje);
 
 }
-
+/* smenjuje se red plavog i crvenog igraca*/
 void crvenoPlavo()
 {
     while(prebrojBrodove(poljePlavogIgraca) !=0 && prebrojBrodove(poljeCrvenogIgraca) !=0)
@@ -128,21 +119,7 @@ void crvenoPlavo()
         cls();
     }
 }
-
-void pobednik()
-{
-    if(prebrojBrodove(poljePlavogIgraca)==0)
-    {
-        crveni();
-        ispisiMeni("gui/pobedacrvenih.txt");
-    }
-    else
-    {
-        plavi();
-        ispisiMeni("gui/pobedaplavih.txt");
-    }
-}
-
+/*Pita gde zeli da igrac gadja*/
 void pitajZaLokaciju(int * red, int * kolona)
 {
     //'1' = 49

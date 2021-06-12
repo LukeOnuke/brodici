@@ -17,15 +17,14 @@ int main()
     saved_attributes = consoleInfo.wAttributes;
     SetConsoleTitle("Potapanje Brodova");
     /*
-    -- tashoni i garconi --
-    logika.h
-    logika.c
+    -- tasha i garca --
+    backend.h
+    backend.c
 
-    -- ja i milic --
+    -- kresoja i milic --
     forntend.h
     frontend.c
     */
     pokreniEkran();
-
     return 0;
 }

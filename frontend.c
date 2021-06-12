@@ -35,40 +35,32 @@ void color(char opcije[])
     system(komanda);
 }
 
-/**
-* Stavlja boje ekrana na boje plavog igraca.
-*
-*/
+/*boji ekran u plavo*/
+
 void plavi()
 {
     color("97");
 }
 
-/**
-* Stavlja boje ekrana na boje crvenog igraca.
-*
-*/
+/* boji ekran u crveno*/
+
 void crveni()
 {
     color("47");
 }
 
-/**
-* Resetuje boju konzole.
-*
-*/
+/*resetuje boju konzole*/
+
 void resetujBoju()
 {
     system("color");
 }
 
-/**
-* Ispisuje meni iz fajla.
-*
-*/
+/*ispisuje meni iz fajla*/
+
 void ispisiMeni(char imeFajla[])
 {
-    FILE *file = fopen(imeFajla, "r"); //Otvori faj u read modu
+    FILE *file = fopen(imeFajla, "r"); //Otvori fajl u read modu
     char karakter;
     while(karakter != EOF)
     {
@@ -79,9 +71,8 @@ void ispisiMeni(char imeFajla[])
     fclose(file); //zatvori fajl da nebi pravio greske u op sistemu
 }
 
-/**
-* Ispisuje polje igraca, matricu pretvara u polje.
-*/
+/*Ispisuje polje igraca, matricu pretvara u polje.*/
+
 void ispisiIgrackoPolje(bool igracevoPolje[][6])
 {
     printf("  "); //namesti index slova
@@ -112,9 +103,8 @@ void ispisiIgrackoPolje(bool igracevoPolje[][6])
 }
 
 
-/**
-* Ispise polje za crvenog igraca.
-*/
+/*ispisuje polje za crvenog igraca*/
+
 void ispisiIgrackoPoljeCrveni(bool igracevoPolje[][6])
 {
     crveni();
@@ -122,9 +112,8 @@ void ispisiIgrackoPoljeCrveni(bool igracevoPolje[][6])
     ispisiIgrackoPolje(igracevoPolje);
 }
 
-/**
-* Ispise polje za plavog igraca.
-*/
+/*ispisuje polje za plavog igraca*/
+
 void ispisiIgrackoPoljePlavi(bool igracevoPolje[][6])
 {
     plavi();
@@ -132,11 +121,11 @@ void ispisiIgrackoPoljePlavi(bool igracevoPolje[][6])
     ispisiIgrackoPolje(igracevoPolje);
 }
 
-/**
-*
-* Proverava dal brod moze tu da stane.
-*
-*/
+
+
+/*Proverava da li brod moze tu da stane.*/
+
+
 bool proveriMesto(int velicina, int red, int kolona, bool igracevoPolje[][6])
 {
     if(red < 0 || red > REDOVI)
@@ -153,11 +142,8 @@ bool proveriMesto(int velicina, int red, int kolona, bool igracevoPolje[][6])
     return true;
 }
 
-/**
-*
-* Dodaj brodove.
-*
-*/
+/*dodaj brodove*/
+
 void dodajBrod(bool igracevoPolje[][6], int red, int kolona,int velicina)
 {
     for(int i = 0; i < velicina; i++)
@@ -166,52 +152,14 @@ void dodajBrod(bool igracevoPolje[][6], int red, int kolona,int velicina)
     }
 }
 
-//autotasha
-void popuniNBrodova(int n, bool igracevoPolje[][6])
-{
-    int brojac = 0;
-    for(int i = 0; i < REDOVI; i++)
-    {
-        for(int j = 0; j < KOLONE; j++)
-        {
-            if(brojac < n)
-            {
-                brojac++;
-                igracevoPolje[i][j] = true;
-            }
-        }
-    }
-}
+/*Napuni matricu,unose se brodovi*/
 
-/**
-*
-* Napuni matricu, unos koji je bitni tashi i marku.
-*
-*/
 void napuniMatricu(bool igracevoPolje[][6], bool plaviIgrac)
 {
     int i;
     int red;
     int kolona;
 
-    if(0)
-    {
-        //autofill
-        if(plaviIgrac)
-        {
-            popuniNBrodova(25, igracevoPolje);
-            ispisiIgrackoPoljePlavi(igracevoPolje);
-            printf("Autofill ukljucen u program.properties");
-        }
-        else
-        {
-            popuniNBrodova(25, igracevoPolje);
-            ispisiIgrackoPoljeCrveni(igracevoPolje);
-            printf("Autofill ukljucen u program.properties");
-        }
-    }
-    else
-    {
         for(i = 0; i < 10; i++)
         {
             do
@@ -234,13 +182,15 @@ void napuniMatricu(bool igracevoPolje[][6], bool plaviIgrac)
             while(!proveriMesto(1, red, kolona, igracevoPolje));
             dodajBrod(igracevoPolje, red, kolona, 1);
         }
-    }
+
 }
 
 void debug(char poruka[])
 {
     printf("[DEBUG] %s\n", poruka);
 }
+
+/*ispisuje liniju radi ulepsavanja*/
 
 void ispisiLiniju(){
     for(int i = 0; i < 80; i++){
@@ -249,6 +199,8 @@ void ispisiLiniju(){
     printf("\n\n");
 }
 
+/*ispisuje tekst kada je igrac promasio*/
+
 void promasaj(){
     cls();
     ispisiMeni("gui/promasaj.txt");
@@ -256,6 +208,8 @@ void promasaj(){
     printf("Promasili ste, cekamo 2 sek za sledeceg igraca.\n");
     ispisiLiniju();
 }
+
+/*ispisuje tekst kada je igrac pogodio*/
 
 void pogodak(){
     resetujBoju();
@@ -266,11 +220,8 @@ void pogodak(){
     ispisiLiniju();
 }
 
-/**
-*
-* Pokreni ekran, glavna funkcija.
-*
-*/
+/*Pokreni ekran, glavna funkcija.*/
+
 void pokreniEkran()
 {
     char izabirniKarakter;
@@ -297,11 +248,7 @@ void pokreniEkran()
             printf("Escape");
             exit(0);
         }
-        else
-        {
-            printf("Pogresan unos, probajte ponovo.\n");
-        }
     }
-    while(izabirniKarakter != 'i' || izabirniKarakter != 'j');
+    while(izabirniKarakter != 'i' || izabirniKarakter != 'e');
 }
 
