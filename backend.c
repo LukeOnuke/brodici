@@ -16,6 +16,7 @@ void igra()
     napuniMatricu(poljePlavogIgraca,true);
     napuniMatricu(poljeCrvenogIgraca,false);
     cls();
+    printf("Pritisnite enter za gadjanje");
     getchar();
     crvenoPlavo();
     pobednik();

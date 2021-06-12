@@ -227,7 +227,7 @@ void napuniMatricu(bool igracevoPolje[][6], bool plaviIgrac)
                     ispisiIgrackoPoljeCrveni(igracevoPolje);
                 }
 
-                printf("Brod [%d. brod] \n", i);
+                printf("Brod [%d. brod] \n", i+1);
                 pitajZaLokaciju(&red, &kolona);
 
             }
@@ -299,9 +299,9 @@ void pokreniEkran()
         }
         else
         {
-            printf("Pogresan unos, probajte ponovo. ");
+            printf("Pogresan unos, probajte ponovo.\n");
         }
     }
     while(izabirniKarakter != 'i' || izabirniKarakter != 'j');
 }
-/*Front end (sprednja-logika) ide ovde*/
+
